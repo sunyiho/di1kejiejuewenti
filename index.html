@@ -56,6 +56,11 @@
             width: 120px; /* 统一加长 */
             text-align: center;
         }
+        /* Make SVG responsive */
+        .responsive-svg {
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-8 flex items-center justify-center min-h-screen">
@@ -151,9 +156,9 @@
             <h2 class="text-2xl font-bold mb-4 text-green-800">问题 4</h2>
             <p class="text-gray-700">有 120 个男学生和 133 个女学生排队领儿童节恩物，轮到丽萍时已经是第 168 人。 还有多少个学生没领到恩物？</p>
             
-            <!-- 更新后的条形图模型SVG -->
+            <!-- 更新后的条形图模型SVG，现在具备响应式功能 -->
             <div class="my-4">
-                <svg width="400" height="100" viewBox="0 0 400 100" class="mx-auto" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 400 100" class="responsive-svg max-w-lg mx-auto" xmlns="http://www.w3.org/2000/svg">
                     <!-- Top bars -->
                     <rect x="0" y="0" width="160" height="30" fill="#FEEF90" stroke="#D97607" stroke-width="1"></rect>
                     <text x="80" y="20" font-family="Inter, sans-serif" font-size="16" text-anchor="middle" fill="#000">120</text>
@@ -319,3 +324,4 @@
     </script>
 </body>
 </html>
+
