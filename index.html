@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加法和减法中的未知数</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .bg-notebook {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .problem-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            background-color: #f0fdf4;
+        }
+        .solution-box {
+            background-color: #d1fae5;
+            border: 1px solid #10b981;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+        }
+        .star-icon {
+            color: #ef4444; /* red-500 */
+        }
+        .btn {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* 统一加长所有作答空间 */
+        input[type="number"] {
+            border: 2px solid #9ca3af;
+            border-radius: 8px;
+            padding: 0.5rem;
+            width: 120px; /* 统一加长 */
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 flex items-center justify-center min-h-screen">
+
+    <div class="bg-notebook max-w-4xl w-full">
+        <h1 class="text-3xl font-bold text-center mb-6 text-green-700">加法和减法中的未知数</h1>
+        <p class="text-center text-gray-600 mb-8">点击按钮或输入答案，看看你是否掌握了这些知识！</p>
+
+        <!-- 问题 1 -->
+        <div class="problem-card">
+            <h2 class="text-2xl font-bold mb-4 text-green-800">问题 1</h2>
+            <div class="flex items-center space-x-2 text-xl font-medium">
+                <p>98 - <input type="number" id="q1-input" class="w-32 text-center rounded-lg border-2 border-green-500 p-2" placeholder="?"> = 16</p>
+            </div>
+            <p class="mt-4 text-gray-700">空格里应该填入什么数目？</p>
+
+            <div class="flex items-center space-x-4 mt-4">
+                <button onclick="checkAnswer1()" class="btn bg-blue-500 hover:bg-blue-600">检查答案</button>
+                <span id="q1-feedback" class="text-lg font-bold"></span>
+            </div>
+
+            <div id="q1-solution" class="solution-box mt-4">
+                <p class="font-bold text-green-800">解题步骤：</p>
+                <p class="mt-2">要找出未知数，我们可以把算式变成：</p>
+                <p class="mt-1 font-mono text-xl">98 - 16 = <span class="font-bold">82</span></p>
+                <p class="mt-4">因此，空格里应该填入 <span class="font-bold">82</span>。</p>
+            </div>
+        </div>
+
+        <!-- 问题 2 -->
+        <div class="problem-card">
+            <h2 class="text-2xl font-bold mb-4 text-green-800">问题 2</h2>
+            <div class="flex items-center space-x-2 text-xl font-medium">
+                <p><span class="star-icon text-3xl">★</span> - 20600 = 8700</p>
+            </div>
+            <p class="mt-4 text-gray-700">找出 <span class="star-icon">★</span> 的值。</p>
+            <div class="flex items-center space-x-2 text-xl font-medium mt-4">
+                <p>答案：<input type="number" id="q2-input" class="w-32 text-center rounded-lg border-2 border-green-500 p-2" placeholder="?"></p>
+            </div>
+
+            <div class="flex items-center space-x-4 mt-4">
+                <button onclick="checkAnswer2()" class="btn bg-blue-500 hover:bg-blue-600">检查答案</button>
+                <span id="q2-feedback" class="text-lg font-bold"></span>
+            </div>
+
+            <div id="q2-solution" class="solution-box mt-4">
+                <p class="font-bold text-green-800">解题步骤：</p>
+                <p class="mt-2">要找出开头的未知数，我们需要用加法来解：</p>
+                <p class="mt-1 font-mono text-xl"><span class="star-icon">★</span> = 8700 + 20600</p>
+                <div class="mt-4 p-4 bg-gray-100 rounded-lg font-mono text-lg max-w-sm mx-auto">
+                    <p class="text-right">  8700</p>
+                    <p class="text-right">+ 20600</p>
+                    <p class="text-right">------</p>
+                    <p class="text-right font-bold">  29300</p>
+                </div>
+                <p class="mt-4">因此，<span class="font-bold">★</span> 的值是 <span class="font-bold">29300</span>。</p>
+            </div>
+        </div>
+
+        <!-- 问题 3 -->
+        <div class="problem-card">
+            <h2 class="text-2xl font-bold mb-4 text-green-800">问题 3</h2>
+            <p class="text-gray-700">一个盒子装有 23 块巧克力。 14 个相同的盒子共有多少块巧克力？</p>
+
+            <div class="flex items-center space-x-2 text-xl font-medium mt-4">
+                <p>答案：<input type="number" id="q3-input" class="w-32 text-center rounded-lg border-2 border-blue-500 p-2" placeholder="?"></p>
+            </div>
+
+            <div class="flex items-center space-x-4 mt-4">
+                <button onclick="checkAnswer3()" class="btn bg-blue-500 hover:bg-blue-600">检查答案</button>
+                <span id="q3-feedback" class="text-lg font-bold"></span>
+            </div>
+
+            <div id="q3-solution" class="solution-box mt-4 bg-blue-50 text-blue-800 border-blue-200">
+                <p class="font-bold">解题步骤：</p>
+                <p class="mt-2">这道题可以用乘法来解决：</p>
+                <p class="mt-1 font-mono text-xl">14 × 23 = <span class="font-bold">322</span></p>
+                <div class="mt-4 p-4 bg-blue-100 rounded-lg font-mono text-lg max-w-sm mx-auto">
+                    <p class="text-right">  23</p>
+                    <p class="text-right">× 14</p>
+                    <p class="text-right">------</p>
+                    <p class="text-right">  92</p>
+                    <p class="text-right">+ 230</p>
+                    <p class="text-right">------</p>
+                    <p class="text-right font-bold">  322</p>
+                </div>
+                <p class="mt-4">所以共有 <span class="font-bold">322</span> 块巧克力。</p>
+            </div>
+        </div>
+
+        <!-- 问题 4 (更新) -->
+        <div class="problem-card">
+            <h2 class="text-2xl font-bold mb-4 text-green-800">问题 4</h2>
+            <p class="text-gray-700">有 120 个男学生和 133 个女学生排队领儿童节恩物，轮到丽萍时已经是第 168 人。 还有多少个学生没领到恩物？</p>
+            
+            <!-- 更新后的条形图模型SVG -->
+            <div class="my-4">
+                <svg width="400" height="100" viewBox="0 0 400 100" class="mx-auto" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Top bars -->
+                    <rect x="0" y="0" width="160" height="30" fill="#FEEF90" stroke="#D97607" stroke-width="1"></rect>
+                    <text x="80" y="20" font-family="Inter, sans-serif" font-size="16" text-anchor="middle" fill="#000">120</text>
+                    <rect x="160" y="0" width="177" height="30" fill="#B1D5F7" stroke="#004D9D" stroke-width="1"></rect>
+                    <text x="248.5" y="20" font-family="Inter, sans-serif" font-size="16" text-anchor="middle" fill="#000">133</text>
+                    
+                    <!-- Bottom bar -->
+                    <rect x="0" y="50" width="224" height="30" fill="#F9A85B" stroke="#B4480A" stroke-width="1"></rect>
+                    <text x="112" y="70" font-family="Inter, sans-serif" font-size="16" text-anchor="middle" fill="#000">168</text>
+
+                    <!-- Question mark and new arrow pointing outwards, with shortened line -->
+                    <path d="M 250 65 L 320 65" stroke="#934D93" stroke-width="2" marker-start="url(#arrowhead-start)" marker-end="url(#arrowhead-end)"></path>
+                    <text x="285" y="85" font-family="Inter, sans-serif" font-size="16" text-anchor="middle" fill="#000">?</text>
+
+                    <defs>
+                        <marker id="arrowhead-start" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                            <polygon points="10 0, 0 3.5, 10 7" fill="#934D93" />
+                        </marker>
+                        <marker id="arrowhead-end" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#934D93" />
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="flex items-center space-x-2 text-xl font-medium mt-4">
+                <p>答案：<input type="number" id="q4-input" class="w-32 text-center rounded-lg border-2 border-yellow-500 p-2" placeholder="?"></p>
+            </div>
+
+            <div class="flex items-center space-x-4 mt-4">
+                <button onclick="checkAnswer4()" class="btn bg-blue-500 hover:bg-blue-600">检查答案</button>
+                <span id="q4-feedback" class="text-lg font-bold"></span>
+            </div>
+
+            <div id="q4-solution" class="solution-box mt-4 bg-yellow-50 text-yellow-800 border-yellow-200">
+                <p class="font-bold">解题步骤：</p>
+                <p class="mt-2">首先计算总人数，然后减去已经领到恩物的人数：</p>
+                <p class="mt-1 font-mono text-xl">120 + 133 - 168 = <span class="font-bold">85</span></p>
+                <div class="mt-4 p-4 bg-yellow-100 rounded-lg font-mono text-lg max-w-sm mx-auto">
+                    <p class="text-right">  120</p>
+                    <p class="text-right">+ 133</p>
+                    <p class="text-right">------</p>
+                    <p class="text-right">  253</p>
+                    <p class="text-right">- 168</p>
+                    <p class="text-right">------</p>
+                    <p class="text-right font-bold">   85</p>
+                </div>
+                <p class="mt-4">所以还有 <span class="font-bold">85</span> 个学生没领到恩物。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 确保DOM加载完成后再执行代码
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Interactive notes loaded.');
+        });
+
+        // 问题1的检查答案函数
+        function checkAnswer1() {
+            const input = document.getElementById('q1-input');
+            const feedback = document.getElementById('q1-feedback');
+            const solution = document.getElementById('q1-solution');
+            const answer = parseInt(input.value, 10);
+            const correctAnswer = 82;
+
+            if (isNaN(answer)) {
+                feedback.textContent = '请输入一个数字。';
+                feedback.className = 'text-lg font-bold text-gray-500';
+                solution.style.display = 'none';
+                return;
+            }
+
+            if (answer === correctAnswer) {
+                feedback.textContent = '太棒了！你答对了！';
+                feedback.className = 'text-lg font-bold text-green-600';
+                solution.style.display = 'block';
+            } else {
+                feedback.textContent = '再试一次。';
+                feedback.className = 'text-lg font-bold text-red-600';
+                solution.style.display = 'none';
+            }
+        }
+        
+        // 问题2的检查答案函数
+        function checkAnswer2() {
+            const input = document.getElementById('q2-input');
+            const feedback = document.getElementById('q2-feedback');
+            const solution = document.getElementById('q2-solution');
+            const answer = parseInt(input.value, 10);
+            const correctAnswer = 29300;
+
+            if (isNaN(answer)) {
+                feedback.textContent = '请输入一个数字。';
+                feedback.className = 'text-lg font-bold text-gray-500';
+                solution.style.display = 'none';
+                return;
+            }
+
+            if (answer === correctAnswer) {
+                feedback.textContent = '太棒了！你答对了！';
+                feedback.className = 'text-lg font-bold text-green-600';
+                solution.style.display = 'block';
+            } else {
+                feedback.textContent = '再试一次。';
+                feedback.className = 'text-lg font-bold text-red-600';
+                solution.style.display = 'none';
+            }
+        }
+
+
+        // 问题3的检查答案函数
+        function checkAnswer3() {
+            const input = document.getElementById('q3-input');
+            const feedback = document.getElementById('q3-feedback');
+            const solution = document.getElementById('q3-solution');
+            const answer = parseInt(input.value, 10);
+            const correctAnswer = 322;
+
+            if (isNaN(answer)) {
+                feedback.textContent = '请输入一个数字。';
+                feedback.className = 'text-lg font-bold text-gray-500';
+                solution.style.display = 'none';
+                return;
+            }
+
+            if (answer === correctAnswer) {
+                feedback.textContent = '太棒了！你答对了！';
+                feedback.className = 'text-lg font-bold text-green-600';
+                solution.style.display = 'block';
+            } else {
+                feedback.textContent = '再试一次。';
+                feedback.className = 'text-lg font-bold text-red-600';
+                solution.style.display = 'none';
+            }
+        }
+
+        // 问题4的检查答案函数
+        function checkAnswer4() {
+            const input = document.getElementById('q4-input');
+            const feedback = document.getElementById('q4-feedback');
+            const solution = document.getElementById('q4-solution');
+            const answer = parseInt(input.value, 10);
+            const correctAnswer = 85;
+
+            if (isNaN(answer)) {
+                feedback.textContent = '请输入一个数字。';
+                feedback.className = 'text-lg font-bold text-gray-500';
+                solution.style.display = 'none';
+                return;
+            }
+
+            if (answer === correctAnswer) {
+                feedback.textContent = '太棒了！你答对了！';
+                feedback.className = 'text-lg font-bold text-green-600';
+                solution.style.display = 'block';
+            } else {
+                feedback.textContent = '再试一次。';
+                feedback.className = 'text-lg font-bold text-red-600';
+                solution.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
